@@ -125,6 +125,8 @@ export default function AuthCard() {
                   key={provider.name}
                   variant="outline"
                   onClick={()=>{
+                    if(provider.name.toLowerCase() == "github")
+                      return  router.push("/login/github")
                     if(provider.name.toLowerCase() == "login" || provider.name.toLowerCase() == "signup")
                     return router.push(`/${provider.name.toLowerCase()}`)
                   }}

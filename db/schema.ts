@@ -24,6 +24,22 @@ export const sessionTable = pgTable("session", {
 	}).notNull()
 });
 
-
+export const oauth_account = pgTable("oauth_account", {
+	provider_id: text("provider_id").primaryKey(),
+	username: text("username").notNull(),
+	// provider_user_id: text("provider_user_id").notNull(),
+	userId: integer("user_id")
+		.notNull()
+		.references(() => userTable.id,{ onDelete: 'cascade' }),
+})
 export type User = typeof   userTable.$inferSelect
 export type Session = typeof sessionTable.$inferSelect
+
+
+// CREATE TABLE oauth_account (
+//     provider_id TEXT NOT NULL,
+//     provider_user_id TEXT NOT NULL,
+//     user_id TEXT NOT NULL,
+//     PRIMARY KEY (provider_id, provider_user_id),
+//     FOREIGN KEY (user_id) REFERENCES user(id)
+// );

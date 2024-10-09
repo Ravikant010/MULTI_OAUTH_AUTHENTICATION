@@ -22,7 +22,8 @@ export const lucia = new Lucia(adapter, {
 	},
 	getUserAttributes: (attributes) => {
 		return {
-			username: attributes.username
+			username: attributes.username,
+			githubId: attributes.github_id,
 		};
 	}
 });
@@ -37,6 +38,7 @@ declare module "lucia" {
 
 interface DatabaseUserAttributes {
 	username: string;
+	github_id: number;
 }
 
 export const validateRequest = cache(
@@ -65,4 +67,8 @@ export const validateRequest = cache(
 	}
 );
 
-
+import { GitHub, Google } from "arctic";
+import { env } from "@/env";
+export const github = new GitHub(process.env.GITHUB_CLIENT_ID!, process.env.GITHUB_CLIENT_SECRET!);
+const redirectURI = "http://localhost:3000/login/google/callback";
+export const google = new Google(env.GOOGLE_CLIENT_ID, env.GOOGLE_CLIENT_SECRET, redirectURI)
