@@ -11,6 +11,11 @@ export const env = createEnv({
     GITHUB_CLIENT_ID: z.string(),
     GITHUB_CLIENT_SECRET: z.string(),
     GITHUB_ACCESSTOKEN: z.string(),
+    TWITTER_API: z.string(),
+    TWITTER_SECRET: z.string(),
+    TWITTER_CLIENT_ID: z.string(),
+    TWITTER_SECRET_TOKEN: z.string(),
+    TWITTER_BEARER_TOKEN: z.string()
   },
   client: {
     // Define any client-side environment variables here if needed
@@ -24,5 +29,10 @@ export const env = createEnv({
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     NEXT_AUTH_SECRET: process.env.NEXT_AUTH_SECRET!,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    TWITTER_API: process.env.TWITTER_API,
+    TWITTER_SECRET: process.env.TWITTER_SECRET,
+    TWITTER_CLIENT_ID: process.env.TWITTER_CLIENT_ID,
+    TWITTER_SECRET_TOKEN: process.env.TWITTER_SECRET_TOKEN,
+    TWITTER_BEARER_TOKEN: process.env.TWITTER_BEARER_TOKEN
   },
 });

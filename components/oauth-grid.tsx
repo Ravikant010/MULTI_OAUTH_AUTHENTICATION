@@ -44,41 +44,41 @@ const oauthProviders = [
     icon: GithubIcon,
     color: "hover:bg-gray-100 focus:ring-gray-500",
   },
-  {
-    name: "Twitter",
-    icon: TwitterIcon,
-    color: "hover:bg-blue-100 focus:ring-blue-500",
-  },
-  {
-    name: "LinkedIn",
-    icon: LinkedinIcon,
-    color: "hover:bg-blue-100 focus:ring-blue-500",
-  },
-  {
-    name: "Facebook",
-    icon: FacebookIcon,
-    color: "hover:bg-blue-100 focus:ring-blue-500",
-  },
-  {
-    name: "Apple",
-    icon: AppleIcon,
-    color: "hover:bg-gray-100 focus:ring-gray-500",
-  },
-  {
-    name: "Email",
-    icon: MailIcon,
-    color: "hover:bg-green-100 focus:ring-green-500",
-  },
-  {
-    name: "YouTube",
-    icon: YoutubeIcon,
-    color: "hover:bg-red-100 focus:ring-red-500",
-  },
-  {
-    name: "Twitch",
-    icon: TwitchIcon,
-    color: "hover:bg-purple-100 focus:ring-purple-500",
-  },
+  // {
+  //   name: "Twitter",
+  //   icon: TwitterIcon,
+  //   color: "hover:bg-blue-100 focus:ring-blue-500",
+  // },
+  // {
+  //   name: "LinkedIn",
+  //   icon: LinkedinIcon,
+  //   color: "hover:bg-blue-100 focus:ring-blue-500",
+  // },
+  // {
+  //   name: "Facebook",
+  //   icon: FacebookIcon,
+  //   color: "hover:bg-blue-100 focus:ring-blue-500",
+  // },
+  // {
+  //   name: "Apple",
+  //   icon: AppleIcon,
+  //   color: "hover:bg-gray-100 focus:ring-gray-500",
+  // },
+  // {
+  //   name: "Email",
+  //   icon: MailIcon,
+  //   color: "hover:bg-green-100 focus:ring-green-500",
+  // },
+  // {
+  //   name: "YouTube",
+  //   icon: YoutubeIcon,
+  //   color: "hover:bg-red-100 focus:ring-red-500",
+  // },
+  // {
+  //   name: "Twitch",
+  //   icon: TwitchIcon,
+  //   color: "hover:bg-purple-100 focus:ring-purple-500",
+  // },
 ];
 
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -125,6 +125,8 @@ export default function AuthCard() {
                   key={provider.name}
                   variant="outline"
                   onClick={()=>{
+                    if(provider.name.toLowerCase() == "google")
+                      return  router.push("/login/google")
                     if(provider.name.toLowerCase() == "github")
                       return  router.push("/login/github")
                     if(provider.name.toLowerCase() == "login" || provider.name.toLowerCase() == "signup")

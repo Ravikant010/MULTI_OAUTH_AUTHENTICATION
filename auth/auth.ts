@@ -7,13 +7,13 @@ import { cache } from "react";
 
 import type { Session, User } from "lucia";
 import { database } from "@/db/db";
-import { userTable, sessionTable} from "@/db/schema";
+import { userTable, sessionTable } from "@/db/schema";
 import type { User as UserType } from "@/db/schema";
 import { redirect } from "next/navigation";
 // import { webcrypto } from "crypto";
 // globalThis.crypto = webcrypto as Crypto;
 
-const adapter = new DrizzlePostgreSQLAdapter(database,sessionTable, userTable);
+const adapter = new DrizzlePostgreSQLAdapter(database, sessionTable, userTable);
 export const lucia = new Lucia(adapter, {
 	sessionCookie: {
 		attributes: {
@@ -62,13 +62,15 @@ export const validateRequest = cache(
 				const sessionCookie = lucia.createBlankSessionCookie();
 				cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 			}
-		} catch {}
+		} catch { }
 		return result;
 	}
 );
 
-import { GitHub, Google } from "arctic";
+import { GitHub, Google, Twitter } from "arctic";
 import { env } from "@/env";
 export const github = new GitHub(process.env.GITHUB_CLIENT_ID!, process.env.GITHUB_CLIENT_SECRET!);
 const redirectURI = "http://localhost:3000/login/google/callback";
 export const google = new Google(env.GOOGLE_CLIENT_ID, env.GOOGLE_CLIENT_SECRET, redirectURI)
+
+export const twitter = new Twitter(env.GITHUB_CLIENT_ID, env.GITHUB_CLIENT_SECRET, "http://localhos:3000/login/twitter/callback");
