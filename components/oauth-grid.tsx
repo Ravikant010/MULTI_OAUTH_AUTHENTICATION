@@ -1,3 +1,4 @@
+"use client"
 import {
   Card,
   CardContent,
@@ -20,10 +21,11 @@ import {
   UserIcon,
 } from "lucide-react";
 import LoginForm from "./login-form";
+import { useRouter } from "next/navigation";
 
 const oauthProviders = [
   {
-    name: "Signin",
+    name: "Signup",
     icon: UserIcon,
     olor: "hover:bg-red-100 focus:ring-red-500",
   },
@@ -103,25 +105,30 @@ function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function AuthCard() {
+  const router = useRouter()
   return (
     <div className="min-h-screen bg-gray-100 py-6 sm:py-12 px-4 sm:px-6 lg:px-8 w-full absolute top-0">
-      <Card className="max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto">
+      <Card className="mx-auto w-full lg:w-10/12 max-h-screen overflow-y-auto">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl sm:text-3xl font-extrabold">
-            Sign In
+            Login and OAuth
           </CardTitle>
           <CardDescription className="mt-2 text-base sm:text-lg">
             Choose your preferred authentication method
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="flex flex-col space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        <CardContent className="min-h-[600px]">
+          <div className="flex flex-col space-y-6 items-center py-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-10/12">
               {oauthProviders.map((provider) => (
                 <Button
                   key={provider.name}
                   variant="outline"
-                  className={`w-full h-12 sm:h-16 flex items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg font-medium transition-colors ${provider.color}`}
+                  onClick={()=>{
+                    if(provider.name.toLowerCase() == "login" || provider.name.toLowerCase() == "signup")
+                    return router.push(`/${provider.name.toLowerCase()}`)
+                  }}
+                  className={`w-full h-12 sm:h-16 flex items-center justify-center gap-3 text-base sm:text-lg font-medium transition-colors ${provider.color}`}
                 >
                   <provider.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   {provider.name}
@@ -131,7 +138,7 @@ export default function AuthCard() {
           </div>
         </CardContent>
       </Card>
-      <p className="mt-6 sm:mt-8 text-center text-xs sm:text-sm text-gray-600">
+      {/* <p className="mt-6 sm:mt-8 text-center text-xs sm:text-sm text-gray-600">
         By signing in, you agree to our{" "}
         <a href="#" className="font-medium text-primary hover:underline">
           Terms of Service
@@ -141,7 +148,7 @@ export default function AuthCard() {
           Privacy Policy
         </a>
         .
-      </p>
+      </p> */}
     </div>
   );
 }
