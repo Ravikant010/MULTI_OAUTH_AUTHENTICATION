@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 import { generateId } from "lucia";
 import crypto from "crypto"
 import { hashPassword } from "@/functions";
-export async function signup(formData: FormData): Promise<{error: string | null }> {
+export async function signup(formData: FormData) {
 	try {
 		const username = formData.get("username");
 		const email  = formData.get("email")
@@ -45,7 +45,7 @@ export async function signup(formData: FormData): Promise<{error: string | null 
 		const session = await lucia.createSession(user.id, {});
 		const sessionCookie = lucia.createSessionCookie(session.id);
 		cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
-		return redirect("/");
+		return true
 	} catch (error) {
 		console.log(error)
 		return {

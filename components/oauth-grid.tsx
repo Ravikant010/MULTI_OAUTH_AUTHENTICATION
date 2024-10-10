@@ -9,15 +9,15 @@ import {
 import { Button } from "@/components/ui/button";
 import {
   GithubIcon,
-  TwitterIcon,
-  LinkedinIcon,
-  FacebookIcon,
-  MailIcon,
-  AppleIcon,
-  YoutubeIcon,
-  TwitchIcon,
+  // TwitterIcon,
+  // LinkedinIcon,
+  // FacebookIcon,
+  // MailIcon,
+  // AppleIcon,
+  // YoutubeIcon,
+  // TwitchIcon,
   LogIn,
-  DollarSignIcon,
+  // DollarSignIcon,
   UserIcon,
 } from "lucide-react";
 import LoginForm from "./login-form";

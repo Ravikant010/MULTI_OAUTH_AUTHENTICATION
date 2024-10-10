@@ -7,8 +7,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { signup } from '@/auth/signup'
+import { useRouter } from 'next/navigation'
 
 export default function Component() {
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -35,6 +37,8 @@ export default function Component() {
       country: value
     }))
   }
+  const router = useRouter()
+  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -42,7 +46,8 @@ export default function Component() {
     Object.entries(formData).forEach(([key, value]) => {
         data.append(key, value as string);
       });
-      await signup(data)
+      if(await signup(data))
+         router.push('/')
     console.log('Form submitted:', formData, data.entries())
   }
 

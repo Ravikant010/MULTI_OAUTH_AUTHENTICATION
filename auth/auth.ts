@@ -74,3 +74,5 @@ const redirectURI = "http://localhost:3000/login/google/callback";
 export const google = new Google(env.GOOGLE_CLIENT_ID, env.GOOGLE_CLIENT_SECRET, redirectURI)
 
 export const twitter = new Twitter(env.GITHUB_CLIENT_ID, env.GITHUB_CLIENT_SECRET, "http://localhos:3000/login/twitter/callback");
+
+export const codeVerifier:string = "35027cd8e5cba2ac8d09dae36dfad1c60ecb5c41b27e13aade634b7ccb6318de";

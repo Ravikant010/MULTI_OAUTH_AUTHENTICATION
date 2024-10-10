@@ -6,7 +6,7 @@ import { database } from "@/db/db"; // Database setup
 import { oauth_account, userTable } from "@/db/schema"; // Your schema definitions
 import { eq } from "drizzle-orm"; // Query builder
 import { env } from "@/env"; // Environment variables
-import { codeVerifier } from "../route";
+import { codeVerifier } from "@/auth/auth";
 
 export async function GET(request: Request): Promise<Response> {
     const url = new URL(request.url);
@@ -22,7 +22,7 @@ export async function GET(request: Request): Promise<Response> {
 
     try {
         // Step 1: Validate the authorization code and get tokens
-        const tokens = await google.validateAuthorizationCode(code, codeVerifier);
+        const tokens = await google.validateAuthorizationCode(code, codeVerifier as string);
 
         // Step 2: Fetch user data from Google API
         const googleUserResponse = await fetch("https://openidconnect.googleapis.com/v1/userinfo", {

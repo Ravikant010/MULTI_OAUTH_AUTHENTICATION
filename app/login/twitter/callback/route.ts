@@ -6,7 +6,7 @@ import { database } from "@/db/db"; // Database setup
 import { oauth_account, userTable } from "@/db/schema"; // Your schema definitions
 import { eq } from "drizzle-orm"; // Query builder
 import { env } from "@/env"; // Environment variables
-import { codeVerifier } from "../route";
+import { codeVerifier } from "@/auth/auth";
 
 export async function GET(request: Request): Promise<Response> {
     const url = new URL(request.url);

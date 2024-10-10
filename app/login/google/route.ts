@@ -1,8 +1,9 @@
 import { generateState } from "arctic";
 import { google } from "@/auth/auth"; // Import your Google OAuth setup
 import { cookies } from "next/headers";
+import { codeVerifier } from "@/auth/auth";
 
-export const codeVerifier = "35027cd8e5cba2ac8d09dae36dfad1c60ecb5c41b27e13aade634b7ccb6318de"; // Static code verifier, consider generating this dynamically for security
+ // Static code verifier, consider generating this dynamically for security
 
 export async function GET(): Promise<Response> {
     const state = generateState(); // Generate a random state to protect against CSRF attacks
